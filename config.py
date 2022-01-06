@@ -20,6 +20,7 @@ Keybind configuration
 keybind = {
     "increase": "ctrl+up",
     "decrease": "ctrl+down",
+    "reset": "ctrl+r",
 }
 
 '''
@@ -37,6 +38,7 @@ Display configurationpp
 
 Holds all display settings.
 '''
-displau = {
-    "foreground": "#ffffff",
+display = {
+    "font_size": 500,
+    "foreground": "#ffffff",  # please insert a valid hex color
 }

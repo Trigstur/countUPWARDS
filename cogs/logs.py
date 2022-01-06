@@ -37,6 +37,10 @@ class Logger:
     def warn(self):
         logging.warning(self)
 
+    def warnnote(self):
+        print("[WARN] {}".format(self))
+        logging.warning(self)
+
     def error(self):
         print("[ERROR] {}".format(self))
         print("Error log saved at {}\{}\{}.log".format(project_root, dir_path, session))
