@@ -17,7 +17,7 @@ def flip_hex(hex_value: str) -> str:
 
 class Display:
     def __init__(self, display):
-        self.count = config.main['count_default']
+        self.count = config.main['start_value']
         self.counter = tk.Label(
             display,
             text=self.count,
@@ -32,29 +32,38 @@ class Display:
 
     def increase(self):
         try:
-            if config.main['count_max'] > self.count or config.main['count_max'] == 0:
-                self.count += 1
+            if config.main['count_max'] > self.count + config.main['keybind_value_update'][0] or config.main[
+                'count_max'] == False:
+                self.count += config.main['keybind_value_update'][0]
                 Logger.log('Increasing count => %s' % self.count + ' (+)')
                 self.counter['text'] = self.count
             else:
+                self.count = config.main['count_max']
+                self.counter['text'] = self.count
+                Logger.log('Setting count => %s' % self.count + ' ( set )')
                 Logger.note('Maximum count reached')
         except Exception as e:
             Logger.error(e)
 
     def decrease(self):
         try:
-            if self.count > 0:
-                self.count -= 1
+
+            if self.count - config.main['keybind_value_update'][1] > config.main['count_bottom'] or config.main[
+                'count_bottom'] == True:
+                self.count -= config.main['keybind_value_update'][1]
                 Logger.log('Decreasing count => %s' % self.count + ' (-)')
                 self.counter['text'] = self.count
             else:
-                Logger.warn('Bottom reached')
+                self.count = config.main['count_bottom']
+                self.counter['text'] = self.count
+                Logger.log('Setting count => %s' % self.count + ' ( set )')
+                Logger.note('Bottom count reached')
         except Exception as e:
             Logger.error(e)
 
     def reset(self):
         try:
-            self.count = 0
+            self.count = config.main['reset_value']
             Logger.warnnote('Resetting count => %s' % self.count + ' ( reset )')
             self.counter['text'] = self.count
         except Exception as e:

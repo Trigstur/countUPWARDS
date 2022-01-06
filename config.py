@@ -10,8 +10,20 @@ Holds all main application settings.
 main = {
     "name": "countUPWARDS",
     "version": "0.1.0",
-    "count_default": 0,
-    "count_max": 0,  # 0 means no limit
+
+    # Value to start at
+    "start_value": 0,
+    # Value to reset to
+    "reset_value": 0,
+
+    # Change value on keybind press by => [increase, decrease]
+    "keybind_value_update": [1, 1],
+
+    # Value (int) to max out at
+    "count_max": 100,  # False means no limit
+
+    # Value (int) to be the lowest you can go
+    'count_bottom': 0,  # False means no limit
 }
 
 '''
