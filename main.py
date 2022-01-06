@@ -18,6 +18,17 @@ def flip_hex(hex_value: str) -> str:
 class Display:
     def __init__(self, display):
         self.count = config.main['start_value']
+
+        if config.main['count_goal'] is not False:
+            self.goal = tk.Label(
+                display,
+                text='/%s' % config.main['count_goal'],
+                fg=config.display['foreground'],
+                bg=flip_hex(config.display['foreground']),
+                font=("Helvetica", config.display['font_size'])
+            )
+            self.goal.pack(side=tk.RIGHT)
+
         self.counter = tk.Label(
             display,
             text=self.count,
@@ -25,7 +36,7 @@ class Display:
             bg=flip_hex(config.display['foreground']),
             font=("Helvetica", config.display['font_size'])
         )
-        self.counter.pack()
+        self.counter.pack(side=tk.LEFT)
         keyboard.add_hotkey(config.keybind['increase'], self.increase)
         keyboard.add_hotkey(config.keybind['decrease'], self.decrease)
         keyboard.add_hotkey(config.keybind['reset'], self.reset)
@@ -33,7 +44,7 @@ class Display:
     def increase(self):
         try:
             if config.main['count_max'] > self.count + config.main['keybind_value_update'][0] or config.main[
-                'count_max'] == False:
+                'count_max'] is False:
                 self.count += config.main['keybind_value_update'][0]
                 Logger.log('Increasing count => %s' % self.count + ' (+)')
                 self.counter['text'] = self.count
@@ -49,7 +60,7 @@ class Display:
         try:
 
             if self.count - config.main['keybind_value_update'][1] > config.main['count_bottom'] or config.main[
-                'count_bottom'] == True:
+                'count_bottom'] is False:
                 self.count -= config.main['keybind_value_update'][1]
                 Logger.log('Decreasing count => %s' % self.count + ' (-)')
                 self.counter['text'] = self.count
@@ -68,6 +79,7 @@ class Display:
             self.counter['text'] = self.count
         except Exception as e:
             Logger.error(e)
+
 
 Display(root)
 root.mainloop()

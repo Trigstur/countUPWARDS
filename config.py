@@ -9,7 +9,7 @@ Holds all main application settings.
 '''
 main = {
     "name": "countUPWARDS",
-    "version": "0.1.1",
+    "version": "0.1.2",
 
     # Value to start at
     "start_value": 0,
@@ -18,6 +18,9 @@ main = {
 
     # Change value on keybind press by => [increase, decrease]
     "keybind_value_update": [1, 1],
+
+    # Value (int) to aim for will display as : count/count_goal
+    "count_goal": False,  # False means no goal
 
     # Value (int) to max out at
     "count_max": False,  # False means no limit
