@@ -9,7 +9,7 @@ Holds all main application settings.
 '''
 main = {
     "name": "countUPWARDS",
-    "version": "0.1.0",
+    "version": "0.1.1",
 
     # Value to start at
     "start_value": 0,
