@@ -20,7 +20,7 @@ main = {
     "keybind_value_update": [1, 1],
 
     # Value (int) to max out at
-    "count_max": 100,  # False means no limit
+    "count_max": False,  # False means no limit
 
     # Value (int) to be the lowest you can go
     'count_bottom': 0,  # False means no limit
